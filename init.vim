@@ -24,12 +24,21 @@ colorscheme catppuccin_mocha
 
 let mapleader = " "
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap <C-p> :GFiles<CR> " fzf git files
-nnoremap <leader>ff :Files<CR> " fzf all files
-nnoremap <C-k> :cnext<CR> " quickfix list - next
-nnoremap <C-j> :cprev<CR> " quickfix list - prev
+
+" open fzf for git files + all files
+nnoremap <C-p> :GFiles<CR> 
+nnoremap <leader>ff :Files<CR>
+
+" quickfix navigation
+nnoremap <C-k> :cnext<CR>
+nnoremap <C-j> :cprev<CR>
+
+" nvim tree
 nnoremap <leader>pv :NvimTreeToggle<CR>
+
+" which-key
 nnoremap <leader>h :WhichKey<CR>
 
-lua require'nvim-tree'.setup {}
-lua require'which-key'.setup {}
+
+lua require('nvim-tree').setup()
+lua require('which-key').setup()
