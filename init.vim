@@ -5,7 +5,6 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set termguicolors
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -20,6 +19,19 @@ Plug 'sudormrfbin/cheatsheet.nvim'
 Plug 'nvim-lua/popup.nvim'
 call plug#end()
 
+lua require('nvim-tree').setup()
+lua require('which-key').setup()
+
+" setting correct colour appearance in tmux - https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+syntax on
+set termguicolors
 colorscheme catppuccin_mocha
 
 let mapleader = " "
@@ -40,5 +52,3 @@ nnoremap <leader>pv :NvimTreeToggle<CR>
 nnoremap <leader>h :WhichKey<CR>
 
 
-lua require('nvim-tree').setup()
-lua require('which-key').setup()
